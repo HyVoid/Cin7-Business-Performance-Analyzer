@@ -1,0 +1,6 @@
+{
+  "name": "Cin7 Business Performance Analyzer",
+  "description": "An interactive, Excel-powered SaaS web application designed to analyze operational data, inventory turnover, SKU-level margins, and business exceptions from Cin7 exports.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

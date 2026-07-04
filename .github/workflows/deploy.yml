@@ -1,0 +1,89 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          # Disabled npm Cache Setup: Removed the cache to prevent lock file missing errors
+          # cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js Static Site
+        env:
+          GITHUB_ACTIONS: 'true'
+          NEXT_TELEMETRY_DISABLED: 1
+        run: npm run build
+
+      - name: Resolve Relative Paths for GitHub Pages
+        run: |
+          node -e "
+          const fs = require('fs');
+          const path = require('path');
+          function walk(dir) {
+            let results = [];
+            const list = fs.readdirSync(dir);
+            list.forEach(file => {
+              file = path.join(dir, file);
+              const stat = fs.statSync(file);
+              if (stat && stat.isDirectory()) {
+                results = results.concat(walk(file));
+              } else {
+                results.push(file);
+              }
+            });
+            return results;
+          }
+          if (fs.existsSync('./out')) {
+            const files = walk('./out');
+            files.forEach(file => {
+              if (file.endsWith('.html') || file.endsWith('.js') || file.endsWith('.css')) {
+                let content = fs.readFileSync(file, 'utf8');
+                // Replace root absolute path references with relative paths
+                content = content.replace(/\"\/_next\//g, '\"_next/');
+                content = content.replace(/\'\/_next\//g, '\'_next/');
+                content = content.replace(/\"\/assets\//g, '\"assets/');
+                content = content.replace(/\'\/assets\//g, '\'assets/');
+                fs.writeFileSync(file, content, 'utf8');
+              }
+            });
+            console.log('Successfully resolved absolute path references to relative paths for GitHub Pages!');
+          } else {
+            console.error('Build output out/ folder was not found.');
+          }
+          "
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
