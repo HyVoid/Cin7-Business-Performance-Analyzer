@@ -10,7 +10,7 @@
 
 > ## **No signup. No installation. Free.**
 >
-> 🌐 **Open in Browser** → *HTML Live Demo*
+> 🌐 **Open in Browser** → [*HTML Live Demo*](https://hyvoid.github.io/Cin7-Business-Performance-Analyzer/)
 > 📥 **Download Excel** → *Excel Workbook Release*
 >
 > Available in two formats:
