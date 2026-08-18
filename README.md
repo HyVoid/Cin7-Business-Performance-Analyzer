@@ -20,22 +20,6 @@
 
 ---
 
-## Screenshots
-
-### Browser Version
-
-<!-- screenshot: browser version -->
-
-*Interactive management dashboard showing inventory exposure, SKU profitability, channel performance, and operational exceptions.*
-
-### Excel Version
-
-<!-- screenshot: excel version -->
-
-*Reusable Excel decision workbook converting Cin7 exports into executive management analytics.*
-
----
-
 ## What It Helps You Track
 
 * Which SKUs generate profit versus which consume working capital.
