@@ -8,7 +8,9 @@
 
 **A reusable operational analytics layer that transforms raw Cin7 exports into inventory, margin, and business performance insights — without installing software, building a BI stack, or redesigning existing workflows.**
 
-> ## **No signup. No installation. Free.**
+**No signup. No installation. Free in your browser.**
+
+Try the browser version for free. If you need the Excel version, you can buy it with a 7-day money-back guarantee.
 >
 > 🌐 **Open in Browser** → [*HTML Live Demo*](https://hyvoid.github.io/Cin7-Business-Performance-Analyzer/)
 > 📥 **Download Excel** → *Excel Workbook Release*
