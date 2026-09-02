@@ -488,7 +488,7 @@ Safety Stock Indicators
 * **Construction Estimating System** — cost estimation and bid analysis.
 * **Financial Operations Control Workbook** — operational finance visibility.
 
-More tools available via GitHub releases and Gumroad.
+More tools available via GitHub releases and our [Website](https://www.theseusworkshop.com/).
 
 ---
 
