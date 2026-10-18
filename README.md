@@ -1,6 +1,7 @@
+[ 🌐 عربي ](README.ar.md) | [ 🇩🇪 Deutsch ](README.de.md) | [ 🇫🇷 Français ](README.fr.md) | [ 🇳🇱 Nederlands ](README.nl.md) | [ 🇪🇸 Español ](README.sp.md) | [ 🇬🇧 English ](README.md)
 # Cin7 Business Performance Analyzer
 
-### Turn Cin7 exports into inventory, profitability, and management decisions — with a free browser version or a reusable Excel workbook.
+## Turn Cin7 exports into inventory, profitability, and management decisions — with a free browser version or a reusable Excel workbook.
 
 ![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)
 ![Platform](https://img.shields.io/badge/Platform-Browser%20%2B%20Excel-green.svg)
@@ -33,7 +34,7 @@ Try the browser version for free. If you need the Excel version, you can buy it 
 
 ---
 
-# Quick Start Workflow
+## Quick Start Workflow
 
 ### 1. Configure operating assumptions once
 
@@ -98,7 +99,7 @@ The business data updates.
 
 ---
 
-# Why I Built This
+## Why I Built This
 
 Most ERP implementation problems are not actually ERP problems.
 
@@ -146,7 +147,7 @@ The purpose was to productize the reasoning process experienced operators use wh
 
 ---
 
-# Common ERP Analytics Problems This Solves
+## Common ERP Analytics Problems This Solves
 
 | Problem                           | Without This Tool                            | With This Tool                                  |
 | --------------------------------- | -------------------------------------------- | ----------------------------------------------- |
@@ -159,7 +160,7 @@ The purpose was to productize the reasoning process experienced operators use wh
 
 ---
 
-# Who This Is For
+## Who This Is For
 
 This tool is designed for:
 
@@ -187,7 +188,7 @@ This tool is **not designed for**:
 
 ---
 
-# About
+## About
 
 I build lightweight operational trackers and decision-support tools for situations where there are simply too many moving parts to hold in your head reliably.
 
