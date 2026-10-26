@@ -1,3 +1,4 @@
+[ 🌐 عربي ](README.ar.md) | [ 🇩🇪 Deutsch ](README.de.md) | [ 🇫🇷 Français ](README.fr.md) | [ 🇳🇱 Nederlands ](README.nl.md) | [ 🇪🇸 Español ](README.sp.md) | [ 🇬🇧 English ](README.md)
 
 # Cin7 Business Performance Analyzer: Excel Reporting Template & Inventory Profitability Dashboard for Cin7 Core (DEAR) & Omni
 <img width="2880" height="1228" alt="image" src="https://github.com/user-attachments/assets/2e8d2054-0ff2-46b5-9716-405840fa0be8" />
@@ -21,8 +22,8 @@ Raw Cin7 exports enter through dedicated paste-values input sheets (`Import_Sale
 >
 > Evaluate the reporting structure immediately in your browser, or download the full `.xlsx` template for recurring monthly analysis:
 >
-> - 🌐 **[Launch the Interactive Cin7 Analytics Web Demo (Free Browser Preview — Zero Setup)](#placeholder-web-demo-url)** — Inspect sample SKU profitability tables, ABC inventory classifications, and exception flags directly in your browser without registration.
-> - 📥 **[Download the Cin7 Excel Reporting Template (.xlsx Workbook for Recurring Analysis & Offline Audits)](https://theseusworkshop.com/l/ykwzbo)** — Get the full dynamic-array Excel workbook to import your own Cin7 CSV files, customize business thresholds, and maintain historical operating records.
+> - 🌐 **[Launch the Interactive Cin7 Analytics Web Demo (Free Browser Preview — Zero Setup)](https://hyvoid.github.io/cin7-excel-reporting-template/)** — Inspect sample SKU profitability tables, ABC inventory classifications, and exception flags directly in your browser without registration.
+> - 📥 **[Download the Cin7 Excel Reporting Template (.xlsx Workbook for Recurring Analysis & Offline Audits)](https://theseusworkshop.com/l/ykwzbo?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=cin7-excel-reporting-template)** — Get the full dynamic-array Excel workbook to import your own Cin7 CSV files, customize business thresholds, and maintain historical operating records.
 >
 > *Commercial Assurance: Where the downloadable `.xlsx` Excel workbook is offered as a paid license, every purchase is backed by a 30-day, no-questions-asked money-back guarantee.*
 >
@@ -68,9 +69,9 @@ Ensure Excel calculation mode is set to **Automatic** so the dynamic-array engin
 3. Drill into `Sales_Analytics` for SKU and channel contribution breakdowns, `Inventory_Analytics` for ABC/DOS stock health matrices, and `Data_Cleaning` to resolve master-data anomalies (such as unmapped SKUs or missing cost records).
 
 ### Step 4: Transition from Browser Testing to Recurring Monthly Reviews in Excel
-While the **[Interactive Browser Preview](#placeholder-web-demo-url)** lets you inspect the analytical layout in a single session, ongoing inventory control and financial reconciliation require persistent local records.
+While the **[Interactive Browser Preview](https://hyvoid.github.io/cin7-excel-reporting-template/)** lets you inspect the analytical layout in a single session, ongoing inventory control and financial reconciliation require persistent local records.
 
-To run this workflow on your own company data every week or month, **[Download the Reusable Cin7 Excel Reporting Template (.xlsx)](https://theseusworkshop.com/l/ykwzbo)**. With the standalone Excel workbook, your team can archive monthly snapshots for month-over-month margin tracking, customize threshold parameters offline, and distribute audit-ready `.xlsx` files across purchasing, warehouse, and executive leadership.
+To run this workflow on your own company data every week or month, **[Download the Reusable Cin7 Excel Reporting Template (.xlsx)](https://theseusworkshop.com/l/ykwzbo?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=cin7-excel-reporting-template)**. With the standalone Excel workbook, your team can archive monthly snapshots for month-over-month margin tracking, customize threshold parameters offline, and distribute audit-ready `.xlsx` files across purchasing, warehouse, and executive leadership.
 
 ---
 
@@ -173,8 +174,8 @@ I design lightweight, decision-focused analytical tools for wholesale, manufactu
 
 The **Cin7 Business Performance Analyzer** applies this methodology to SKU profitability, working-capital exposure, and supplier cost control—giving your team immediate visibility from the Cin7 data you already own.
 
-- 🌐 **[Preview the Cin7 Web Analyzer in Your Browser](#placeholder-web-demo-url)**
-- 📥 **[Get the Full Reusable Excel Workbook (.xlsx)](#placeholder-excel-download-url)**
+- 🌐 **[Preview the Cin7 Web Analyzer in Your Browser](https://hyvoid.github.io/cin7-excel-reporting-template/)**
+- 📥 **[Get the Full Reusable Excel Workbook (.xlsx)](https://theseusworkshop.com/l/ykwzbo?utm_source=github&utm_medium=GitHub%20README&utm_campaign=readme%20new%20launch&utm_content=cin7-excel-reporting-template)**
 
 
 ---
