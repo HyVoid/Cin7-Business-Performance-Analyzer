@@ -20,7 +20,7 @@ Raw Cin7 exports enter through dedicated paste-values input sheets (`Import_Sale
 > Evaluate the reporting structure immediately in your browser, or download the full `.xlsx` template for recurring monthly analysis:
 >
 > - 🌐 **[Launch the Interactive Cin7 Analytics Web Demo (Free Browser Preview — Zero Setup)](#placeholder-web-demo-url)** — Inspect sample SKU profitability tables, ABC inventory classifications, and exception flags directly in your browser without registration.
-> - 📥 **[Download the Cin7 Excel Reporting Template (.xlsx Workbook for Recurring Analysis & Offline Audits)](#placeholder-excel-download-url)** — Get the full dynamic-array Excel workbook to import your own Cin7 CSV files, customize business thresholds, and maintain historical operating records.
+> - 📥 **[Download the Cin7 Excel Reporting Template (.xlsx Workbook for Recurring Analysis & Offline Audits)](https://theseusworkshop.com/l/ykwzbo)** — Get the full dynamic-array Excel workbook to import your own Cin7 CSV files, customize business thresholds, and maintain historical operating records.
 >
 > *Commercial Assurance: Where the downloadable `.xlsx` Excel workbook is offered as a paid license, every purchase is backed by a 30-day, no-questions-asked money-back guarantee.*
 >
@@ -69,7 +69,7 @@ Ensure Excel calculation mode is set to **Automatic** so the dynamic-array engin
 ### Step 4: Transition from Browser Testing to Recurring Monthly Reviews in Excel
 While the **[Interactive Browser Preview](#placeholder-web-demo-url)** lets you inspect the analytical layout in a single session, ongoing inventory control and financial reconciliation require persistent local records.
 
-To run this workflow on your own company data every week or month, **[Download the Reusable Cin7 Excel Reporting Template (.xlsx)](#placeholder-excel-download-url)**. With the standalone Excel workbook, your team can archive monthly snapshots for month-over-month margin tracking, customize threshold parameters offline, and distribute audit-ready `.xlsx` files across purchasing, warehouse, and executive leadership.
+To run this workflow on your own company data every week or month, **[Download the Reusable Cin7 Excel Reporting Template (.xlsx)](https://theseusworkshop.com/l/ykwzbo)**. With the standalone Excel workbook, your team can archive monthly snapshots for month-over-month margin tracking, customize threshold parameters offline, and distribute audit-ready `.xlsx` files across purchasing, warehouse, and executive leadership.
 
 ---
 
