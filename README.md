@@ -1,6 +1,4 @@
 
-# Cin7 Business Performance Analyzer
-
 # Cin7 Business Performance Analyzer: Excel Reporting Template & Inventory Profitability Dashboard for Cin7 Core (DEAR) & Omni
 
 > **Product Summary:** **Cin7 Business Performance Analyzer** is a lightweight **Excel reporting template** and **inventory profitability dashboard** built for **Cin7 Core (formerly DEAR Inventory)** and **Cin7 Omni** users. It converts raw **Cin7 CSV exports** (sales orders, stock on hand, and purchase receipts) into an automated **SKU gross margin calculator**, **working capital tracker**, and **purchase order (PO) cost variance audit** without deploying external BI software.
