@@ -26,7 +26,6 @@ Raw Cin7 exports enter through dedicated paste-values input sheets (`Import_Sale
 >
 > *Commercial Assurance: Where the downloadable `.xlsx` Excel workbook is offered as a paid license, every purchase is backed by a 30-day, no-questions-asked money-back guarantee.*
 >
-> *(Note: Replace `#placeholder-web-demo-url` and `#placeholder-excel-download-url` with your live production URLs before publishing.)*
 
 ---
 
