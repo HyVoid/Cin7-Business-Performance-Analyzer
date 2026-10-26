@@ -5,21 +5,17 @@ on:
     branches:
       - main
       - master
+  workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
 concurrency:
   group: 'pages'
   cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,8 +25,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          # Disabled npm Cache Setup: Removed the cache to prevent lock file missing errors
-          # cache: 'npm'
+          # Disabled npm Cache Setup: Removed the cache to prevent 'Dependencies lock file is not found' errors
 
       - name: Install dependencies
         run: npm install
@@ -41,7 +36,7 @@ jobs:
           NEXT_TELEMETRY_DISABLED: 1
         run: npm run build
 
-      - name: Resolve Relative Paths for GitHub Pages
+      - name: Configure Relative Paths & .nojekyll for GitHub Pages
         run: |
           node -e "
           const fs = require('fs');
@@ -63,27 +58,29 @@ jobs:
           if (fs.existsSync('./out')) {
             const files = walk('./out');
             files.forEach(file => {
-              if (file.endsWith('.html') || file.endsWith('.js') || file.endsWith('.css')) {
+              if (file.endsWith('.html') || file.endsWith('.js') || file.endsWith('.css') || file.endsWith('.txt')) {
                 let content = fs.readFileSync(file, 'utf8');
-                // Replace root absolute path references with relative paths
-                content = content.replace(/\"\/_next\//g, '\"_next/');
-                content = content.replace(/\'\/_next\//g, '\'_next/');
-                content = content.replace(/\"\/assets\//g, '\"assets/');
-                content = content.replace(/\'\/assets\//g, '\'assets/');
+                // Replace absolute root /_next/ and /assets/ with relative ./_next/ or _next/
+                content = content.replace(/\"\/_next\//g, '\"./_next/');
+                content = content.replace(/\'\/_next\//g, '\'./_next/');
+                content = content.replace(/\"\/assets\//g, '\"./assets/');
+                content = content.replace(/\'\/assets\//g, '\'./assets/');
+                content = content.replace(/href=\"\/(?!\/)/g, 'href=\"./');
                 fs.writeFileSync(file, content, 'utf8');
               }
             });
-            console.log('Successfully resolved absolute path references to relative paths for GitHub Pages!');
+            // Create .nojekyll so GitHub Pages does not ignore _next folder
+            fs.writeFileSync('./out/.nojekyll', '');
+            console.log('Successfully made all resource paths relative and created .nojekyll for GitHub Pages!');
           } else {
-            console.error('Build output out/ folder was not found.');
+            console.error('Build output ./out was not found.');
+            process.exit(1);
           }
           "
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          path: ./out
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages

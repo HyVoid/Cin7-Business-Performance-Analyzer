@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from 'motion/react';
 import {
   TrendingUp, TrendingDown, AlertTriangle, CheckCircle, Download, Upload,
   RotateCcw, Plus, Trash2, Settings, HelpCircle, Briefcase, Layers,
-  DollarSign, Percent, ShoppingBag, Boxes, Calendar, ArrowRight, Info
+  DollarSign, Percent, ShoppingBag, Boxes, Calendar, ArrowRight, Info,
+  Menu, X
 } from 'lucide-react';
 
 // ==========================================
@@ -108,6 +109,7 @@ export default function Cin7Analyzer() {
   // STATE MANAGEMENT
   // ==========================================
   const [activeTab, setActiveTab] = useState<string>('Dashboard');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [parameters, setParameters] = useState<Parameters>(DEFAULT_PARAMETERS);
   const [sales, setSales] = useState<SaleRow[]>(DEFAULT_SALES);
   const [inventory, setInventory] = useState<InventoryRow[]>(DEFAULT_INVENTORY);
@@ -835,103 +837,208 @@ export default function Cin7Analyzer() {
     return Math.max(...inventoryAnalytics.map(i => i.totalValue), 1);
   }, [inventoryAnalytics]);
 
+  const navSections = [
+    {
+      title: 'Executive',
+      items: [
+        { id: 'Dashboard', label: 'Executive Dashboard', icon: Briefcase },
+        { id: 'Instructions', label: 'Instructions & Guide', icon: Info },
+        { id: 'Parameters', label: 'Global Parameters', icon: Settings },
+      ]
+    },
+    {
+      title: 'Data Ingestion',
+      items: [
+        { id: 'Import_Sales', label: 'Import Sales', icon: ShoppingBag },
+        { id: 'Import_Inventory', label: 'Import Inventory', icon: Boxes },
+        { id: 'Import_Purchases', label: 'Import Purchases', icon: Calendar },
+      ]
+    },
+    {
+      title: 'Financial Engines',
+      items: [
+        { id: 'Data_Cleaning', label: 'Data Cleaning', icon: Layers },
+        { id: 'Cost_Engine', label: 'Cost Engine', icon: DollarSign },
+        { id: 'Margin_Engine', label: 'Margin Engine', icon: Percent },
+      ]
+    },
+    {
+      title: 'Analytics & Audit',
+      items: [
+        { id: 'Inventory_Analytics', label: 'Inventory Analytics', icon: Boxes },
+        { id: 'Sales_Analytics', label: 'Sales Analytics', icon: TrendingUp },
+        { id: 'Exception_Report', label: 'Exception Report', icon: AlertTriangle, badge: exceptionReport.length },
+      ]
+    }
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col antialiased bg-[#F5F5F2] text-[#1A1A2E]">
+    <div className="min-h-screen flex flex-col md:flex-row antialiased bg-[#F5F5F2] text-[#1A1A2E]">
       
-      {/* ── STICKY NAVIGATION HEADER (56px) ── */}
-      <header className="sticky top-0 h-14 bg-white border-b border-[#E8E8E6] z-50 shadow-apple-nav flex items-center justify-between px-10">
-        <div className="flex items-center space-x-3">
-          <div className="w-7 h-7 bg-[#051C2C] rounded-md flex items-center justify-center text-white font-display font-semibold text-sm">
+      {/* ── MOBILE TOP NAVIGATION BAR (md:hidden) ── */}
+      <div className="md:hidden sticky top-0 z-50 h-14 bg-white border-b border-[#E8E8E6] flex items-center justify-between px-4 shadow-xs">
+        <div className="flex items-center space-x-2.5">
+          <div className="w-7 h-7 bg-[#051C2C] rounded-md flex items-center justify-center text-white font-display font-semibold text-xs shadow-xs">
             C7
           </div>
-          <span className="font-display font-bold text-lg text-[#051C2C] tracking-tight">
-            Cin7 Performance Analyzer
-          </span>
-          <span className="hidden md:inline text-xs text-[#888888] font-mono pl-4 border-l border-[#E8E8E6]">
-            SaaS Accelerator Layer
-          </span>
-        </div>
-
-        {/* Action Controls & Autosave State */}
-        <div className="flex items-center space-x-6">
-          <div className="hidden lg:flex items-center space-x-2 text-xs text-[#888888] font-mono bg-[#F5F5F2] py-1.5 px-3 rounded-md">
-            <span className="inline-block w-2 h-2 rounded-full bg-[#00C853] animate-pulse"></span>
-            <span>Last Saved:</span>
-            <span className="font-semibold text-[#051C2C]">{lastSaved || 'Syncing...'}</span>
-          </div>
-
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={handleExportBackup}
-              title="Export JSON Workbook Backup"
-              className="flex items-center space-x-1.5 text-xs text-[#051C2C] bg-white border border-[#E8E8E6] py-1.5 px-3 rounded-md hover:bg-[#F5F5F2] transition-colors font-medium"
-            >
-              <Download size={13} />
-              <span className="hidden sm:inline">Export Backup</span>
-            </button>
-            <label className="flex items-center space-x-1.5 text-xs text-[#051C2C] bg-white border border-[#E8E8E6] py-1.5 px-3 rounded-md hover:bg-[#F5F5F2] transition-colors cursor-pointer font-medium">
-              <Upload size={13} />
-              <span className="hidden sm:inline">Import Backup</span>
-              <input type="file" accept=".json" onChange={handleImportBackup} className="hidden" />
-            </label>
-            <button
-              onClick={handleResetData}
-              title="Reset Data to Factory Workbook Defaults"
-              className="flex items-center justify-center p-1.5 text-xs text-[#D32F2F] bg-red-50 rounded-md hover:bg-red-100 transition-colors"
-            >
-              <RotateCcw size={15} />
-            </button>
+          <div>
+            <span className="font-display font-bold text-sm text-[#051C2C] tracking-tight block leading-tight">
+              Cin7 Analyzer
+            </span>
+            <span className="text-[10px] text-[#888888] font-mono block">
+              SaaS Accelerator Layer
+            </span>
           </div>
         </div>
-      </header>
 
-      {/* ── TABS SELECTOR STRIP (SECONDARY HORIZONTAL NAV) ── */}
-      <div className="bg-white border-b border-[#E8E8E6] sticky top-14 z-40 overflow-x-auto">
-        <div className="max-w-[1400px] mx-auto px-10 flex space-x-8">
-          {[
-            { id: 'Dashboard', label: 'Executive Dashboard', icon: Briefcase },
-            { id: 'Instructions', label: 'Instructions', icon: Info },
-            { id: 'Parameters', label: 'Parameters', icon: Settings },
-            { id: 'Import_Sales', label: 'Import Sales', icon: ShoppingBag },
-            { id: 'Import_Inventory', label: 'Import Inventory', icon: Boxes },
-            { id: 'Import_Purchases', label: 'Import Purchases', icon: Calendar },
-            { id: 'Data_Cleaning', label: 'Data Cleaning', icon: Layers },
-            { id: 'Cost_Engine', label: 'Cost Engine', icon: DollarSign },
-            { id: 'Margin_Engine', label: 'Margin Engine', icon: Percent },
-            { id: 'Inventory_Analytics', label: 'Inventory Analytics', icon: Boxes },
-            { id: 'Sales_Analytics', label: 'Sales Analytics', icon: TrendingUp },
-            { id: 'Exception_Report', label: 'Exception Report', icon: AlertTriangle, badge: exceptionReport.length }
-          ].map((t) => {
-            const Icon = t.icon;
-            const isActive = activeTab === t.id;
-            return (
-              <button
-                key={t.id}
-                onClick={() => setActiveTab(t.id)}
-                className={`flex items-center space-x-2 py-4 border-b-2 text-[11px] uppercase tracking-wider font-semibold transition-all whitespace-nowrap relative ${
-                  isActive
-                    ? 'border-[#2251FF] text-[#2251FF]'
-                    : 'border-transparent text-[#888888] hover:text-[#051C2C]'
-                }`}
-              >
-                <Icon size={14} className={isActive ? 'text-[#2251FF]' : 'text-[#888888]'} />
-                <span>{t.label}</span>
-                {t.badge !== undefined && t.badge > 0 && (
-                  <span className="ml-1 px-1.5 py-0.5 text-[9px] font-mono font-bold bg-[#D32F2F] text-white rounded-full leading-none">
-                    {t.badge}
-                  </span>
-                )}
-              </button>
-            );
-          })}
+        <div className="flex items-center space-x-2">
+          {exceptionReport.length > 0 && (
+            <span className="px-1.5 py-0.5 text-[10px] font-mono font-bold bg-[#D32F2F] text-white rounded-full">
+              {exceptionReport.length}
+            </span>
+          )}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="p-1.5 rounded-md text-[#051C2C] hover:bg-[#F5F5F2] transition-colors"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
       </div>
 
-      {/* ── MAIN WORKSPACE CONTAINER ── */}
-      <main className="flex-grow max-w-[1400px] w-full mx-auto px-10 py-10">
-        
-        {/* ANIMATED PAGE ROUTER ENTRY */}
-        <AnimatePresence mode="wait">
+      {/* ── MOBILE BACKDROP OVERLAY ── */}
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs md:hidden"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* ── VERTICAL SIDEBAR NAVIGATION ── */}
+      <aside
+        className={`
+          fixed md:sticky top-0 left-0 z-50 md:z-30 h-screen w-64 lg:w-72 bg-white border-r border-[#E8E8E6] flex flex-col justify-between shrink-0 transition-transform duration-200 ease-in-out
+          ${mobileMenuOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full md:translate-x-0'}
+        `}
+      >
+        {/* Brand & App Title Header */}
+        <div className="p-5 border-b border-[#E8E8E6] flex items-center justify-between shrink-0">
+          <div className="flex items-center space-x-3">
+            <div className="w-8 h-8 bg-[#051C2C] rounded-lg flex items-center justify-center text-white font-display font-bold text-sm shadow-xs">
+              C7
+            </div>
+            <div>
+              <div className="font-display font-bold text-base text-[#051C2C] tracking-tight leading-snug">
+                Cin7 Analyzer
+              </div>
+              <div className="text-[10px] text-[#888888] font-mono">
+                SaaS Accelerator Layer
+              </div>
+            </div>
+          </div>
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="md:hidden p-1 text-[#888888] hover:text-[#051C2C] rounded"
+          >
+            <X size={18} />
+          </button>
+        </div>
+
+        {/* Grouped Vertical Navigation Links */}
+        <div className="flex-1 overflow-y-auto px-3.5 py-4 space-y-5">
+          {navSections.map((section, sIdx) => (
+            <div key={sIdx} className="space-y-1">
+              <div className="px-2.5 pb-1 text-[10px] uppercase tracking-wider font-semibold text-[#888888]">
+                {section.title}
+              </div>
+              <div className="space-y-0.5">
+                {section.items.map((item) => {
+                  const Icon = item.icon;
+                  const isActive = activeTab === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        setActiveTab(item.id);
+                        setMobileMenuOpen(false);
+                      }}
+                      className={`w-full flex items-center justify-between px-2.5 py-2 rounded-lg text-xs font-medium transition-all group ${
+                        isActive
+                          ? 'bg-[#2251FF]/10 text-[#2251FF] font-semibold border-l-[3px] border-[#2251FF]'
+                          : 'text-[#4A4A4A] hover:bg-[#F5F5F2] hover:text-[#051C2C]'
+                      }`}
+                    >
+                      <div className="flex items-center space-x-2.5 truncate">
+                        <Icon
+                          size={15}
+                          className={`shrink-0 transition-colors ${
+                            isActive ? 'text-[#2251FF]' : 'text-[#888888] group-hover:text-[#051C2C]'
+                          }`}
+                        />
+                        <span className="truncate">{item.label}</span>
+                      </div>
+                      {item.badge !== undefined && item.badge > 0 && (
+                        <span className="ml-2 px-1.5 py-0.5 text-[9px] font-mono font-bold bg-[#D32F2F] text-white rounded-full leading-none shrink-0">
+                          {item.badge}
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Sidebar Footer Controls & Autosave Status */}
+        <div className="p-4 border-t border-[#E8E8E6] bg-[#FAFAF8] space-y-3 shrink-0">
+          {/* Autosave Timestamp */}
+          <div className="flex items-center justify-between text-xs text-[#888888] font-mono bg-white border border-[#E8E8E6] py-1.5 px-2.5 rounded-md shadow-xs">
+            <div className="flex items-center space-x-1.5">
+              <span className="inline-block w-2 h-2 rounded-full bg-[#00C853] animate-pulse"></span>
+              <span>Saved:</span>
+            </div>
+            <span className="font-semibold text-[#051C2C] truncate max-w-[110px]" title={lastSaved}>
+              {lastSaved || 'Syncing...'}
+            </span>
+          </div>
+
+          {/* Quick Action Buttons */}
+          <div className="grid grid-cols-2 gap-1.5">
+            <button
+              onClick={handleExportBackup}
+              title="Export JSON Workbook Backup"
+              className="flex items-center justify-center space-x-1 text-[11px] text-[#051C2C] bg-white border border-[#E8E8E6] py-1.5 px-2 rounded-md hover:bg-[#F5F5F2] transition-colors font-medium shadow-xs"
+            >
+              <Download size={12} />
+              <span>Export</span>
+            </button>
+            <label className="flex items-center justify-center space-x-1 text-[11px] text-[#051C2C] bg-white border border-[#E8E8E6] py-1.5 px-2 rounded-md hover:bg-[#F5F5F2] transition-colors cursor-pointer font-medium shadow-xs">
+              <Upload size={12} />
+              <span>Import</span>
+              <input type="file" accept=".json" onChange={handleImportBackup} className="hidden" />
+            </label>
+          </div>
+
+          {/* Reset Defaults */}
+          <button
+            onClick={handleResetData}
+            title="Reset Data to Factory Workbook Defaults"
+            className="w-full flex items-center justify-center space-x-1.5 py-1.5 text-[11px] text-[#D32F2F] bg-red-50/70 border border-red-100 rounded-md hover:bg-red-100 transition-colors font-medium"
+          >
+            <RotateCcw size={12} />
+            <span>Reset Factory Data</span>
+          </button>
+        </div>
+      </aside>
+
+      {/* ── RIGHT MAIN WORKSPACE COLUMN ── */}
+      <div className="flex-1 min-w-0 flex flex-col min-h-screen">
+        <main className="flex-grow max-w-[1400px] w-full mx-auto px-6 md:px-10 py-8 md:py-10">
+          
+          {/* ANIMATED PAGE ROUTER ENTRY */}
+          <AnimatePresence mode="wait">
           <motion.div
             key={activeTab}
             initial={{ opacity: 0, y: 12 }}
@@ -2553,13 +2660,22 @@ export default function Cin7Analyzer() {
 
       </main>
 
-      {/* ── FOOTER CREDIT STRIP ── */}
-      <footer className="bg-white border-t border-[#E8E8E6] py-5 mt-auto text-center text-xs text-[#888888] font-mono">
-        <div className="max-w-[1400px] mx-auto px-10 flex justify-between items-center flex-wrap gap-2">
-          <span>&copy; 2026 Cin7 performance-accelerator applet. All Rights Reserved.</span>
-          <span>Designed with Institutional Minimalism &amp; Apple HIG</span>
-        </div>
-      </footer>
+        {/* ── FOOTER CREDIT & PRIVACY STRIP ── */}
+        <footer className="bg-white border-t border-[#E8E8E6] py-5 mt-auto text-xs text-[#888888] font-mono">
+          <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-3 text-center md:text-left">
+            <div className="flex flex-col space-y-1">
+              <span className="font-semibold text-[#051C2C]">&copy; 2026 Cin7 Business Performance Analyzer. All Rights Reserved.</span>
+              <span className="text-[11px] text-[#888888]">
+                Privacy &amp; Security Notice: All storage functions of this tool operate entirely within your browser&apos;s localStorage; the web application does not retain, upload, or transmit any user data to external servers.
+              </span>
+            </div>
+            <div className="flex items-center space-x-2 text-[11px]">
+              <span className="inline-block w-2 h-2 rounded-full bg-[#00C853]"></span>
+              <span>Institutional Minimalism &amp; Apple HIG Standards</span>
+            </div>
+          </div>
+        </footer>
+      </div>
     </div>
   );
 }
