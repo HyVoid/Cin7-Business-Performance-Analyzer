@@ -10,8 +10,8 @@ const ebGaramond = EB_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: 'Cin7 Business Performance Analyzer',
-  description: 'Enterprise Operational Analytics and Decision Engine for Cin7 exports',
+  title: 'Theseus Workshop | Cin7 Business Performance Analyzer',
+  description: 'Enterprise Operational Analytics and Decision Engine for Cin7 exports by Theseus Workshop',
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

@@ -877,16 +877,16 @@ export default function Cin7Analyzer() {
       
       {/* ── MOBILE TOP NAVIGATION BAR (md:hidden) ── */}
       <div className="md:hidden sticky top-0 z-50 h-14 bg-white border-b border-[#E8E8E6] flex items-center justify-between px-4 shadow-xs">
-        <div className="flex items-center space-x-2.5">
-          <div className="w-7 h-7 bg-[#051C2C] rounded-md flex items-center justify-center text-white font-display font-semibold text-xs shadow-xs">
-            C7
+        <div className="flex items-center space-x-2.5 min-w-0">
+          <div className="w-7 h-7 bg-[#051C2C] rounded-md flex items-center justify-center text-white font-display font-semibold text-xs shadow-xs shrink-0">
+            TW
           </div>
-          <div>
-            <span className="font-display font-bold text-sm text-[#051C2C] tracking-tight block leading-tight">
-              Cin7 Analyzer
+          <div className="min-w-0">
+            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#2251FF] block leading-none mb-0.5">
+              Theseus Workshop
             </span>
-            <span className="text-[10px] text-[#888888] font-mono block">
-              SaaS Accelerator Layer
+            <span className="font-display font-bold text-xs sm:text-sm text-[#051C2C] tracking-tight block leading-tight truncate">
+              Cin7 Business Performance Analyzer
             </span>
           </div>
         </div>
@@ -924,16 +924,19 @@ export default function Cin7Analyzer() {
       >
         {/* Brand & App Title Header */}
         <div className="p-5 border-b border-[#E8E8E6] flex items-center justify-between shrink-0">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-[#051C2C] rounded-lg flex items-center justify-center text-white font-display font-bold text-sm shadow-xs">
-              C7
+          <div className="flex items-center space-x-3 min-w-0">
+            <div className="w-8 h-8 bg-[#051C2C] rounded-lg flex items-center justify-center text-white font-display font-bold text-xs shadow-xs shrink-0 tracking-tight">
+              TW
             </div>
-            <div>
-              <div className="font-display font-bold text-base text-[#051C2C] tracking-tight leading-snug">
-                Cin7 Analyzer
+            <div className="min-w-0">
+              <div className="text-[10px] font-semibold uppercase tracking-wider text-[#2251FF] leading-none mb-1">
+                Theseus Workshop
               </div>
-              <div className="text-[10px] text-[#888888] font-mono">
-                SaaS Accelerator Layer
+              <div className="font-display font-bold text-sm text-[#051C2C] tracking-tight leading-snug">
+                Cin7 Business Performance Analyzer
+              </div>
+              <div className="text-[10px] text-[#888888] font-mono mt-0.5 truncate">
+                Operational Analytics &amp; Decision Support
               </div>
             </div>
           </div>
@@ -2664,7 +2667,7 @@ export default function Cin7Analyzer() {
         <footer className="bg-white border-t border-[#E8E8E6] py-5 mt-auto text-xs text-[#888888] font-mono">
           <div className="max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col md:flex-row justify-between items-center gap-3 text-center md:text-left">
             <div className="flex flex-col space-y-1">
-              <span className="font-semibold text-[#051C2C]">&copy; 2026 Cin7 Business Performance Analyzer. All Rights Reserved.</span>
+              <span className="font-semibold text-[#051C2C]">&copy; 2026 Theseus Workshop. All Rights Reserved. Cin7 Business Performance Analyzer.</span>
               <span className="text-[11px] text-[#888888]">
                 Privacy &amp; Security Notice: All storage functions of this tool operate entirely within your browser&apos;s localStorage; the web application does not retain, upload, or transmit any user data to external servers.
               </span>
